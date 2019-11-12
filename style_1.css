@@ -1,0 +1,25 @@
+body {
+	width: 800px;
+	border: 1px solid #9e9e9e;
+
+}
+hr {
+	border:0px;
+}
+.info1 {
+	float:left;
+	margin-left:15px;
+}
+.infoitem {
+	padding: 8px;
+	font-weight: bold;
+}
+.clearfix {
+	clear:left;
+}
+#baseinfo {
+	overflow: auto;
+}
+.info2 span {
+	display: block;
+}

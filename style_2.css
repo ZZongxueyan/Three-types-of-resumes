@@ -1,0 +1,39 @@
+#top {
+	text-align: center;
+	float: left;
+	width: 240px;
+	height: 823px;
+	background: rgba(0,0,255,0.6);
+}
+body {
+	width: 1200px;
+}
+h1 {
+	padding-top: 30px;
+	color:white;
+}
+article {
+	padding-left:10px;
+	float: left;
+	width: 50%
+}
+hr {
+	border:0px;
+}
+.info1 {
+	float:left;
+	margin-left:15px;
+}
+.infoitem {
+	padding: 8px;
+	font-weight: bold;
+}
+.clearfix {
+	clear:left;
+}
+#baseinfo {
+	overflow: auto;
+}
+.info2 span {
+	display: block;
+}

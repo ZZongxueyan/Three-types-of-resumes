@@ -1,0 +1,47 @@
+.info1 {
+	float:left;
+	margin-left:10px;
+}
+.info2 {
+	margin-left:10px;
+}
+.infoitem {
+	padding: 8px;
+	font-weight: bold;
+}
+
+#top {
+ 	height: 50px;
+ 	background: gray;
+ 	margin: 0px;
+ 	padding:10px;
+}
+body {
+	width: 800px;
+	border: 1px solid #9e9e9e;
+}
+h1 {
+	color : white;
+	margin: 0px;
+}
+h2 {
+	margin :0px;
+	background: #9e9e9e;
+	float: left;
+	padding:20px;
+	text-align: center;
+	font-size:15px;
+}
+hr {
+	margin:0px;
+}
+span {
+	font-size: 13px;
+}
+.foo {
+	float:left;
+	height: 40px;
+}
+.clearfix {
+	clear:left;
+}
