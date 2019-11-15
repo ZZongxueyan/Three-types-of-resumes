@@ -6,6 +6,9 @@ body {
 hr {
 	border:0px;
 }
+.foo {
+	overflow: hidden;
+}
 .info1 {
 	float:left;
 	margin-left:15px;
@@ -14,9 +17,9 @@ hr {
 	padding: 8px;
 	font-weight: bold;
 }
-.clearfix {
+/*.clearfix {
 	clear:left;
-}
+}*/
 #baseinfo {
 	overflow: auto;
 }

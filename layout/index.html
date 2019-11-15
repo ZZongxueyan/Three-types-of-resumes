@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+			margin: 0px;
+		}
+		header {
+			width: 100%;
+			background: gray;
+			height: 60px;
+		}
+		.header {
+			width: 960px;
+			margin: 0 auto;
+			position: relative;
+		}
+		#logo {
+			padding:15px;
+			color: white;
+			font-size: 20px;
+		}
+		.navc {
+			position: absolute;
+			right: 20px;
+			top:10px;
+		}
+		.navc a {
+			font-size: 10px;
+			color: white;
+		}
+		#banner {
+			width: 100%;
+			height: 250px;
+			background-color: #4cd64c;
+			position: relative;
+		}
+		.boxes {
+			position: absolute;
+			bottom:10px;
+			right:240px;
+		}
+		.box {
+			display: inline-block;
+			width: 30px;
+			padding-top: 5px;
+			text-align: center;
+			padding-bottom: 6px;
+			border:0.5px solid black;
+			background-color: #6de492;
+			color: green;
+		}
+		.boxes .activated {
+			padding-top:15px;
+			background: white;
+			color: black;
+		}
+		nav {
+			width: 100%;
+			height: 50px;
+			/*background-color: gray;*/
+			border-bottom: 1px solid;
+			position: relative;
+		}
+		.nav_menu {
+			position: absolute;
+			left:240px;
+			bottom: 0px;
+		}
+		.menu {
+			width: 70px;
+			height: 30px;
+			background: #ece6e6;
+			border: 1px solid;
+			border-top-right-radius: 1em;
+			border-top-left-radius: 1em;
+			display: inline-block;
+			font-size: 8px;
+			text-align: center;
+			line-height: 30px;
+			word-spacing: 0;
+		}
+		.nav_menu .activated {
+			background: none;
+		}
+		#contents {
+			display: flex;
+			width: 960px;
+			margin: 0 auto;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+		.content {			
+			padding:80px;
+			border:0.3px solid;
+			flex:1;
+			margin:5px;
+
+			
+		}
+		footer {
+			margin-top:10px;
+			padding-top: 5px;
+			background: gray;
+			width: 100%;
+			height: 60px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+ <header>
+ 	<div class="header">
+ 		<div id="logo">Logo</div>
+	 	<div class="navc">
+	 		<a href="#">Github</a>
+	 		<a href="#">Register</a>
+	 		<a href="#">Login</a>
+	 	</div>
+ 	</div> 	
+ </header>
+ <section id="banner">
+ 	<div class="boxes">
+ 		<div class="box">1</div>
+ 		<div class="box activated">2</div>
+ 		<div class="box">3</div>
+ 		<div class="box">4</div>
+ 	</div>
+ </section>
+ <nav>
+ 	<div class="nav_menu">
+ 		<div class="menu activated">HOME</div>
+ 		<div class="menu">PROFILE</div>
+ 		<div class="menu">ABOUT</div>
+ 	</div>
+ </nav>
+ <section id="contents">	
+ 	<div class="content"> This is Content 1</div>
+ 	<div class="content">MaybeContent 2</div>
+ 	<div class="content">Content3</div>
+ 	<div class="content">Content4</div>
+ 	<div class="content">Content5</div>
+ 	<div class="content">Content6</div>
+ 	<div class="content">Content7</div>
+ 	<div class="content">Content8</div>
+ 	<div class="content">Content9</div>
+ 	<div class="content">Content10</div>
+ </section>
+ <footer>
+ 	2018 ife.baidu.com
+ </footer>
+</body>
+</html>
