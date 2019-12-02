@@ -17,3 +17,6 @@
 [day17-18实现](https://zzongxueyan.github.io/study/day17-18/day17-18_1.html)
 ## Day19 找到那个DOM
 - 实现 console控制台中运行
+## Day20-21 让你和页面对话
+- 实现结果
+[淡入淡出](https://zzongxueyan.github.io/study/day20-21/day20-21-4(1).html)
