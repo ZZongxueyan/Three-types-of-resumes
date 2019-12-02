@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<!-- 	<style type="text/css">
+		#fade-obj {
+			opacity: 0;
+		}
+		#fade-btn {
+			disabled: true;
+		}
+	</style> -->
+</head>
+<body>
+	<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+	<button id="fade-btn">淡</button>
+	<p id="txt"></p>
+	<script type="text/javascript">
+		var fadeBtn =document.getElementById("fade-btn");
+		var fadeObj =document.getElementById("fade-obj"); 
+		var alpha = 1;
+		// var speed = 2;
+		var timer = null;
+		
+		fadeBtn.addEventListener('click', clickToFade);
+
+		function fadeOut(){
+			if(alpha >= 0){
+				alpha -= 0.05;
+				fadeBtn.disabled = true;
+				fadeObj.style.opacity = alpha;
+				console.log(fadeObj.style.opacity);
+			}
+			else{
+				fadeBtn.disabled = false;
+				fadeBtn.innerHTML = "淡入";
+				clearInterval(timer);
+			}
+		}
+		function fadeIn(){
+			if(alpha < 1){
+				alpha +=0.05;
+				fadeBtn.disabled = true;
+				fadeObj.style.opacity = alpha;
+				console.log(fadeObj.style.opacity);
+			}
+			else{
+				fadeBtn.disabled = false;
+				fadeBtn.innerHTML= "淡出";
+				clearInterval(timer);
+			}
+		}
+		function clickToFade(){
+			if(fadeBtn.textContent == "淡出"){
+				timer = setInterval(fadeOut, 100);
+			}
+			else{
+				timer = setInterval(fadeIn, 100);
+			}
+		}
+		
+		
+	</script>
+</body>
+</html>

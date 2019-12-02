@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+<body>            
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select" >        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+    <p id = "testp" style="background-color: red">测试cssText</p>
+    <div id="label1">
+        <button id="testbtn">测试</button>
+    </div>
+    
+    <script type="text/javascript">
+        var schbtn = document.getElementById("school");
+        var compbtn = document.getElementById("company");
+        var schsele = document.getElementById("school-select");
+        var compsele = document.getElementById("company-select");
+        schbtn.onclick = function(){
+            console.log("hello");
+            schsele.style.cssText = "display:block;"
+            compsele.style.cssText = "display:none";
+        }
+        compbtn.onclick = function(){
+            console.log("hello");
+            compsele.style.cssText = "display:block;"
+            schsele.style.cssText = "display:none";
+        }
+
+        var test = document.getElementById("testp");
+        var testbtn = document.getElementById("testbtn");
+        var label1 = document.getElementById("label1");
+        label1.onclick = function(){
+            alert("this is a button click");
+            console.log(event);
+            console.log("2" + event.this);
+            console.log(event.target);
+            // test.style.width="20px";
+            // test.style.height="20px";
+            // test.style.backgroundColor = "green";
+            // test.style.border="solid 1px red";
+            test.style = "border:solid 1px red;background-color:green;";
+        }
+        // label1.onclick  = function(){
+        //     alert("this is a parent of button click");
+        //     console.log(event);
+        // }
+    </script>
+        
+</body>
+</html>

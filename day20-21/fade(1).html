@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+    <script>
+    var displayArea = document.querySelector("#fade-obj");
+    var fadeBtn = document.querySelector("#fade-btn");
+    var op = 1;
+    fadeBtn.addEventListener("click",Clicktodisapear);
+    function Fadeout() {
+       if (op >= 0) {
+        op = op -0.01;
+        console.log(op);
+        displayArea.style.opacity = op;
+        var t = setTimeout("Fadeout()",10);
+       }
+       else{
+        clearTimeout(t);
+        fadeBtn.disabled= !fadeBtn.disabled;
+        fadeBtn.textContent = "淡入";
+       }
+    }
+    function Fadein() {
+       if (op <= 1) {
+        op = op +0.01;
+        console.log(op);
+        displayArea.style.opacity = op;
+        var t = setTimeout("Fadein()",10);
+       }
+       else{
+        clearTimeout(t);
+        fadeBtn.disabled= !fadeBtn.disabled;
+        fadeBtn.textContent = "淡出";
+       }
+    }
+    function Clicktodisapear() {
+        fadeBtn.disabled= !fadeBtn.disabled;
+        if (fadeBtn.textContent == "淡出") {
+            Fadeout();
+        }
+        else{
+            Fadein();
+        }
+        
+    }
+    </script>
+</body>
+</html>
