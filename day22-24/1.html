@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	let arr = []
+   let fields = ['high', 'medium', 'low']
+   let obj = [
+    { time: '2017-11-29', high: '0', medium: '2', low: '4' },
+    { time: '2017-12-01', high: '0', medium: '1', low: '3' },
+    { time: '2017-12-02', high: '0', medium: '1', low: '3' },
+    { time: '2017-12-03', high: '0', medium: '2', low: '6' },
+    { time: '2017-12-04', high: '1', medium: '2', low: '2' },
+    { time: '2017-12-05', high: '0', medium: '3', low: '6' },
+    { time: '2017-12-06', high: '0', medium: '1', low: '1' },
+    { time: '2017-12-07', high: '4', medium: '2', low: '2' },
+    { time: '2017-12-08', high: '3', medium: '0', low: '4' },
+    { time: '2017-12-09', high: '0', medium: '0', low: '0' },
+    { time: '2017-12-10', high: '0', medium: '1', low: '7' },
+    { time: '2017-12-11', high: '0', medium: '2', low: '8' },
+    { time: '2017-12-12', high: '1', medium: '1', low: '4' },
+    { time: '2017-12-13', high: '0', medium: '0', low: '6' },
+    { time: '2017-12-14', high: '0', medium: '1', low: '1' },
+    { time: '2017-12-15', high: '0', medium: '0', low: '6' },
+    { time: '2017-12-16', high: '0', medium: '0', low: '8' },
+    { time: '2017-12-17', high: '0', medium: '0', low: '5' },
+    { time: '2017-12-18', high: '0', medium: '7', low: '11' },
+    { time: '2017-12-19', high: '2', medium: '0', low: '7' },
+    { time: '2017-12-20', high: '0', medium: '0', low: '0' },
+    { time: '2017-12-21', high: '0', medium: '0', low: '6' },
+    { time: '2017-12-22', high: '3', medium: '1', low: '1' },
+    { time: '2017-12-23', high: '0', medium: '0', low: '0' },
+    { time: '2017-12-24', high: '0', medium: '8', low: '15' },
+    { time: '2017-12-25', high: '2', medium: '0', low: '0' },
+    { time: '2017-12-26', high: '0', medium: '0', low: '0' },
+    { time: '2017-12-27', high: '0', medium: '0', low: '0' },
+    { time: '2017-12-28', high: '1', medium: '7', low: '7' },
+    { time: '2017-12-29', high: '0', medium: '0', low: '5' },
+    { time: '2017-12-30', high: '0', medium: '2', low: '2' },
+    { time: '2017-12-31', high: '0', medium: '5', low: '7' }
+  ]
+  arr = fields.map(key => obj.map(o => o[key]));
+  console.log(arr);
+</script>
+</body>
+</html>

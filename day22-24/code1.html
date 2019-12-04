@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="select">
+	    <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+	    <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+	</div>
+	<div id="calc">
+	    <button id = "isNum">判断当前选中的输入框输入内容是否为数字</button>
+	    <button id = "rounding">把 A 四舍五入为 B 个小数位数的数字</button>
+	    <button id="abs">当前选中数字的绝对值</button>
+	    <button id="ceil">对当前选中的数字进行上舍入</button>
+	    <button id="floor">对当前选中的数字进行下舍入</button>
+	    <button id="nearRound">把当前选中的数字四舍五入为最接近的整数</button>
+	    <button id="max">返回 A 和 B 中的最高值</button>
+	    <button id="min">返回 A 和 B 中的最低值</button>        
+	</div>
+	<p id="result"></p>
+	<script type="text/javascript">
+		var numA = document.getElementById("num-a");
+		var numB = document.getElementById("num-b");
+		var btn = document.getElementById("calc");
+		var sele = document.getElementsByName("math-obj");
+		var result = document.getElementById("result");
+
+		btn.addEventListener('click', calculate);
+
+		function checkedValue(){
+			//alert("hello");
+			for(var i = 0;i< sele.length;i++){
+				if(sele[i].checked){
+					// console.log(sele[i]);
+					var value = sele[i].parentNode.nextSibling.value;
+					// console.log(typeof value);
+					return value;
+				}
+			}
+		}
+		
+
+		function calculate(e){
+			var eve = e.target.id;
+			switch(eve){
+				case "isNum": isNum(checkedValue()); break;
+				case "rounding":rounding();break;
+				case "ceil": ceil();break;
+				case "floor": floor();break;
+				case "nearRound": round();break;
+				case "abs": abs();break;
+				case "max": max();break;
+				case "min": min();break;
+			}
+		}
+ 
+		function isNum(num){
+			//var num = checkedValue();
+			var rex = /^(-?\d+)(\.\d+)?$/;//正则表达式
+            var flag = rex.test(num);//通过表达式进行匹配
+            if (flag) {
+                console.log(num + "  为数字类型");
+            } else {
+                console.log(num + "  不是数字！");
+            }
+            return flag;
+		}
+		function rounding(){
+			var a = numA.value;
+			var b = numB.value;
+			isNum(a);
+			isNum(b);
+			var num1 = Number(a);
+			var num2 = new Number(b);
+			var c = result.innerHTML = num1.toFixed(num2);
+			console.log(c);
+		}
+		function abs(){
+			var num = checkedValue();
+			if(isNum(num)){
+				result.innerHTML = Math.abs(num);
+			}else {
+				alert("请输入数字！");
+			}
+			
+		}
+		function ceil(){
+			var num = checkedValue();
+			if(isNum(num)){
+				result.innerHTML = Math.ceil(num);
+			}else {
+				alert("请输入数字！");
+			}
+		}
+		function floor(){
+			var num = checkedValue();
+			if(isNum(num)){
+				result.innerHTML = Math.floor(num);
+			}else {
+				alert("请输入数字！");
+			}
+		}
+		function round(){
+			var num = checkedValue();
+			if(isNum(num)){
+				var a = result.innerHTML = Math.round(num);
+			// console.log(a);
+			}else {
+				alert("请输入数字！");
+			}
+		}
+		function max(){
+			var x = numA.value;
+			var y = numB.value;
+			if(isNum(x) && isNum(y)){
+				var maxval = Math.max(x,y);
+				result.innerHTML = maxval;
+			}else {
+				alert("请输入数字！");
+			}
+		}
+		function min(){
+			var x = numA.value;
+			var y = numB.value;
+			if (isNum(x) && isNum(y)) {
+				var minval = Math.min(x,y);
+				result.innerHTML = minval;
+			}else {
+				alert("请输入数字！");
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="sele">
+    <label>String A:
+        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+    </label>
+    <textarea id="str-a"></textarea>
+    <label>String B:
+        <input id="radio-b" type="radio" name="str-obj" value="b">
+    </label>
+    <textarea id="str-b"></textarea>        
+    <label>Num A：<input id="num-a" type="number" value="0"></label>
+    <label>Num B：<input id="num-b" type="number" value="1"></label>
+</div>
+<div id="calc">
+    <button id="len">获取当前选中输入的内容长度</button>
+    <button id="thirdChar">当前选中输入中的第3个字符</button>
+    <button id="concat">把两个输入框的文字连接在一起输出（concat）</button>
+    <button id="indexOf">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+    <button id="lastIndexOf">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+    <button id="slice">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+    <button id="rows">当前选中输入框的行数</button>
+    <button id="substr">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+    <button id="upCase">把所选输入框中的内容全部转为大写</button>
+    <button id="downCase">把所选输入框中的内容全部转为小写</button>
+    <button id="dele">把所选输入框中内容的半角空格全部去除</button>
+    <button id="replace">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+</div>
+<p id="result"></p>
+<script type="text/javascript">
+    var btn = document.getElementById("calc");
+    var strA = document.getElementById("str-a");
+    var strB = document.getElementById("str-b");
+    var numa = document.getElementById("num-a");
+    var numb = document.getElementById("num-b");
+    var sele = document.getElementsByName("str-obj");
+    var result = document.getElementById("result");
+
+
+    btn.addEventListener('click', calculate);
+
+    function checkedValue(){
+        //console.log(sele);
+            for(var i = 0;i< sele.length;i++){
+                if(sele[i].checked){
+                    var value = sele[i].parentNode.nextSibling.nextSibling.value;
+                    return value;
+                }
+            }
+        }
+
+    function calculate(e){
+        var eve = e.target.id;
+        switch (eve) {
+            case "len": getLen();break;
+            case "thirdChar": getThirdChar();break;
+            case "concat": stringContat();break;
+            case "indexOf": getIndexOf();break;
+            case "lastIndexOf": getLastIndexOf();break;
+            case "slice": getSlice();break;
+            case "rows": getRows();break;
+            case "substr": getSubstr();break;
+            case "upCase": getUpcase();break;
+            case "downCase": getDowncase();break;
+            case "dele": deleteSpace();break;
+            case "replace": getReplace();break;
+
+        }
+    }
+    function getLen(){
+        var val = checkedValue();
+        result.innerHTML = "被选中的内容长度为： " + val.length;
+    }
+    function getThirdChar(){
+        var val= checkedValue();
+        result.innerHTML = val[2];
+    }
+    function stringContat(){
+        var stra = strA.value;
+        var strb = strB.value;
+        result.innerHTML = stra.concat(strb);
+    }
+    function getIndexOf(){
+        var stra = strA.value;
+        var strb = strB.value;
+        result.innerHTML = "从第"+ (stra.indexOf(strb) + 1) + "字符开始";
+    }
+    function getLastIndexOf(){
+        var stra = strA.value;
+        var strb = strB.value;
+        result.innerHTML = strb.lastIndexOf(stra);
+    }
+    function getSlice(){
+        var val = checkedValue();
+        var n1 = numa.value;
+        var n2 = numb.value;
+        result.innerHTML = val.slice(n1, n2); // 从n1开始，到n2之前
+    }
+    function getRows(){
+        var val= checkedValue();
+        var rows = val.split('\n'); // split()将一个字符串切割成字符串数组。
+        result.innerHTML = rows.length;
+
+    }
+    function getSubstr(){
+        var val = checkedValue();
+        var n1 = numa.value;
+        var n2 = numb.value;
+        result.innerHTML = val.substr(n1,n2); // 从n1开始提取n2个字符
+    }
+    function getUpcase(){
+        var val = checkedValue();
+        result.innerHTML = val.toUpperCase();
+    }
+    function getDowncase(){
+        var val = checkedValue();
+        result.innerHTML = val.toLowerCase();
+    }
+    function deleteSpace(){
+        var val = checkedValue();
+        result.innerHTML = val.replace(/\s+/g,"");
+    }
+    function getReplace(){
+        var val = checkedValue();
+        if(val == strA.value ){
+            strA.value = strB.value;
+        }else{
+            strB.value = strA.value;
+        }
+    }
+</script>
+</body>
+</html>
