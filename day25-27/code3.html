@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	
+</head>
+<body>
+	<select id="year-select" onchange="getSeleDay();update()">
+	    
+	</select>
+
+	<select id="month-select" onchange="getSeleDay();update()">
+	   
+	</select>
+
+	<select id="day-select" onchange="update()">
+	    
+	</select>
+
+	<select id="hour-select" onchange="update()">
+	    
+	</select>
+
+	<select id="minite-select" onchange="update()">
+	  
+	</select>
+
+	<select id="second-select" onchange="update()">
+	    
+	</select>
+
+	<p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+	<script type="text/javascript">
+		var year = document.getElementById("year-select");
+		var month = document.getElementById("month-select");
+		var day = document.getElementById("day-select");
+		var hour = document.getElementById("hour-select");
+		var min = document.getElementById("minite-select");
+		var sec = document.getElementById("second-select");
+		var select = document.getElementsByTagName("select");
+		var result = document.getElementById("result-wrapper");
+
+		// 填充年、月、时、分、秒的下拉选项
+		getSele(2000,2032,year);
+		getSele(1,12,month);
+		// getSele(1,31,day);
+		getSele(0,23,hour);
+		getSele(0,59,min);
+		getSele(0,59,sec);
+
+		//填充下拉选项
+		function getSele(start,end,element){
+			var html = null;
+			for(var i = start;i <= end;i++){
+				html +=`<option value=${checkNum(i)}>${checkNum(i)}</option>`;
+			}
+			element.innerHTML = html;
+		}
+		// for(var i = 0;i<select.length;i++){
+		// 	select[i].addEventListener('onchange', update());
+		// }
+		// for(var i=0;i<2;i++){
+		// 	select[i].addEventListener('onchange', getSeleDay());
+		// }
+
+		//月、日、时、分、秒显示两位数字
+		function checkNum(n){
+			if(n<10){
+				n = "0"+ n;
+			}
+			return n;
+		}
+
+		// 填充月份下拉菜单
+		function getSeleDay(){
+			var end = getDayOpt();
+			getSele(1,end,day);
+		}
+
+		// 确定月份天数
+		function getDayOpt(){
+			console.log("hello");
+			var yy = select[0].value;
+			var mm = select[1].value;
+			if(yy%4==0 && yy%100!=0 || yy%400==0){
+		        var arr = [31,28,31,30,31,30,31,31,30,31,30,31];
+		　　}else{
+
+		　　   var arr = [31,29,31,30,31,30,31,31,30,31,30,31];
+		　　}
+			return end = arr[mm-1];
+		}
+
+		setInterval(update,1000);
+
+		function update(){
+			var choicedDate = new Date(
+				select[0].value, 
+				select[1].value - 1,
+				select[2].value ,
+				select[3].value ,
+				select[4].value ,
+				select[5].value);
+
+			var week = choicedDate.getDay();
+			var arr = ["一","二","三","四","五","六","日"];
+			var weekDay = arr[week];
+			var nowDate = new Date();
+			var calc = parseInt((nowDate - choicedDate)/1000); //时间差（单位秒）
+			if(calc > 0){
+				var str = " 已经过去 ";
+			}else{
+				calc = Math.abs(calc);
+				str = " 还有 ";
+			}
+			var showDay = parseInt(calc / (60*60*24)); 
+			var showHour = parseInt((calc % (60*60*24)) / (60*60));
+			var showMin = parseInt(((calc % (60*60*24)) % (60*60)) / 60);
+			var showSec = parseInt(calc % 60);
+			result.textContent = "现在距离 " + select[0].value+ "年"+ select[1].value + "月"+select[2].value+"日"+ "星期"+weekDay + select[3].value +":"+select[4].value + ":" +select[5].value+ str +showDay+" 天 "+showHour+" 小时 "+showMin+" 分 "+showSec+" 秒";
+		}
+	</script>
+</body>
+</html>

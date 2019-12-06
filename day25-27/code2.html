@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		function startTime(){
+			var myDate = new Date();
+			var yyyy = myDate.getFullYear(); // 年份
+			var mm = myDate.getMonth() + 1; // 月份-1
+			var dd = myDate.getDate();//日
+			var week = myDate.getDay(); // 星期几
+			var hh = myDate.getHours();// 时
+			var min = myDate.getMinutes();// 分钟
+			var ss = myDate.getSeconds();// 秒
+			
+
+			mm = checkTime(mm);
+			hh = checkTime(hh);
+			min = checkTime(min);
+			ss = checkTime(ss);
+			week1 = checkWeekInChinese(week);
+			week2 = checkWeekInEnglish(week);
+			var AMorPM = getPMorAM(hh);
+
+			var time1 = yyyy + "年" + mm +"月" + dd +"日"+"星期"+ week1 +"  "+ hh+":"+min+":"+ss;
+			var time2 = yyyy + "-" + mm +"-" + dd +" "+ week2 +"  "+ hh+":"+min+":"+ ss +" "+AMorPM;
+			
+			para.textContent = time1;
+			para2.textContent = time2;
+
+		}
+		setInterval(startTime, 1000);
+
+		var para = document.createElement("p");
+		var para2 = document.createElement("p");
+		document.body.appendChild(para);
+		document.body.appendChild(para2);
+
+		function checkTime(i){
+			if (i<10) {
+				i="0" + i;
+			}
+			return i;
+		}
+		function checkWeekInChinese(week){
+			var arr = ["一","二","三","四","五","六","天"];
+			return arr[week-1];
+		}
+		function checkWeekInEnglish(week){
+			var arr = ["Monday","Tuesday","Wednesday","Thirsday","Friday","Satuaday","Sunday"];
+			return arr[week-1];
+		}
+		function getPMorAM(hh){
+			if( hh>=13 ){
+				return "PM";
+			}else{
+				return "AM";
+			}
+		}
+	</script>
+</body>
+</html>
