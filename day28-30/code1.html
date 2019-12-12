@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		li:hover{
+			background-color: #e8aeae;
+		}
+		.selectedLi{
+        background-color:#cccc;
+        }
+		
+	</style>
+</head>
+<body onload="autoFocus()">
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug">
+	    	
+	    </ul>
+	</div>
+	<script type="text/javascript">
+		var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+		var input = document.getElementById("email-input");
+		var wrapper = document.getElementById("email-sug-wrapper");
+		var liLists = document.getElementsByTagName("li");
+		var tagIndex = 0;
+		// input.addEventListener("keyup", getInfo); // 当用户释放键盘上的键时触发。
+		// input.addEventListener("keypress", getInfo); // 按字符键时触发，如果按住不放，会重复触发此事件。
+		// input.addEventListener("keydown", getInfo); // 按任意键触发，若按住不放，会重复触发此事件。按键之前触发！！！
+		// input.addEventListener("input", getInfo); // 按回车键，ESC键，上下左右键,无反应
+
+		//进入页面时，输入框获得焦点
+		function autoFocus(){
+            input.focus();
+        }
+
+        //键盘事件
+		input.onkeyup = function(event){
+			if(!(event.keyCode === 13 || event.keyCode == 38 || event.keyCode == 40)){
+				// console.log(event.keyCode);
+				var inp = input.value;
+				displayControl(inp); // 控制提示框的显示
+				inp = inp.replace(/\s*/g,"");
+				console.log(inp);
+				var texts = getliText(inp); // 获取提示框的提示信息
+				showLi(texts); // 显示提示框中的信息
+			}
+			if(event.keyCode === 13){
+				var choicedli = document.getElementsByClassName("selectedLi");
+				input.value = choicedli[0].textContent;
+				hideInfo(choicedli[0]);
+			}
+			if(event.keyCode === 38){
+				liLists[tagIndex - 1].setAttribute("class", "selectedLi");
+				liLists[tagIndex].removeAttribute("class");
+				tagIndex --;
+			}
+			if(event.keyCode ===40){
+				liLists[tagIndex+1].setAttribute("class", "selectedLi");
+				liLists[tagIndex].removeAttribute("class");
+				tagIndex ++;
+			}
+		}
+
+
+		// 生成提示框中的提示内容
+		function getliText(inp){
+			var index = inp.indexOf('@');
+			if(index > -1){
+				userName = inp.slice(0, index);
+				suffix = inp.slice(index+1);
+				console.log("username:" + userName);
+				console.log("后缀" + suffix);
+			}else{
+				console.log(inp);
+				userName = inp;
+				suffix = "";
+			}
+			var curr = postfixList.filter(function(item){
+				return item.match(suffix);
+			})
+			if(curr.length == 0){
+				curr = postfixList;
+			}
+			var liTexts = curr.map(function(item){
+				return userName + "@" + item; 
+			})
+			return liTexts;
+		}
+
+
+ 		//将提示框的内容添加到email-sug-wrapper中
+		function showLi(arr){
+			var html = '';
+			for(var i = 0;i < arr.length;i++){
+					html += `<li>${arr[i]}</li>`;
+				}
+			wrapper.innerHTML = html;
+			// console.log(liLists);
+			liLists[0].setAttribute("class", "selectedLi");
+			// console.log(html);
+		}
+
+
+		// 判断显示隐藏状态
+		function displayControl(inp){
+			if(inp == null || inp.match(/^\s*$/)){ //字符串为空（null），说明内存中没有此变量；字符串为空串(" ")，说明内存中有此变量，但是此变量长度为0.
+				hideInfo(wrapper);
+			}else{
+				showInfo(wrapper);
+			}
+		}
+
+
+		//隐藏提示框
+		function hideInfo(element) {
+		    element.style.display = 'none';
+		    // console.log("hideInfo");
+		}
+
+
+		//显示提示框
+		function showInfo(element) {
+		    element.style.display = 'block';
+		}
+		
+		wrapper.onclick = function(e){
+			var eve = e.target;
+			input.value = eve.textContent;
+			hideInfo(eve);
+			console.log(eve);
+		}
+
+
+
+
+
+	</script>
+</body>
+</html>
