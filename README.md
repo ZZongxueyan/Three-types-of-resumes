@@ -29,3 +29,7 @@
 ## Day28-30 第二十八天到第三十天 给爱的人发个邮件吧
 -实现结果
 [给爱的人发个邮件吧](https://zzongxueyan.github.io/study/day28-30/code1.html)
+## Day31-33 第三十一到第三十三天：我是精明的小卖家（一)
+-实现结果
+[任务一](https://zzongxueyan.github.io/study/day31-33/code1.html)
+[任务二](https://zzongxueyan.github.io/study/day31-33/code2.html)
