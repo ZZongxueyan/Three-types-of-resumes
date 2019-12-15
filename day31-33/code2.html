@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+</head>
+<body>
+	<p>请选择地区</p>
+	<div id="region-radio-wrapper"></div>
+	<p>请选择商品</p>
+	<div id="product-radio-wrapper"></div>
+	<div id="table-wrapper"></div>
+	<script type="text/javascript" src="ife31data.js"></script>
+	<script type="text/javascript">
+		var wrapper = document.getElementById("table-wrapper");
+		var region = document.getElementById("region-radio-wrapper");
+		var product = document.getElementById("product-radio-wrapper");
+
+		// 生成一组CheckBox
+		function getCheckbox(checkboxName,data){
+			var all = document.createElement("input");
+			all.setAttribute("type","checkbox");
+			all.setAttribute("value", "0");
+			all.setAttribute("checkbox-type", "all"); // 给一个自定义属性表示为全选checkbox，比如checkbox-type="all"
+			var text1 = document.createTextNode("全选");
+			checkboxName.appendChild(all);
+			checkboxName.appendChild(text1);
+			for(var i = 0;i < data.length;i++){
+				var node = document.createElement("input");
+				node.setAttribute("type", "checkbox");
+				node.setAttribute("value", data[i].value);
+				node.setAttribute("checkbox-type", "single");
+				var text2 = document.createTextNode(data[i].text);
+				checkboxName.appendChild(node);
+				checkboxName.appendChild(text2);
+			}
+
+			// 给容器做一个事件委托
+			checkboxName.onclick = function(event){
+				var target = event.target;
+				var len = checkboxName.childNodes.length;
+				var areas = [];
+				var products = [];
+				if(target.type === "checkbox"){
+					var attri = target.getAttribute("checkbox-type");
+					var len = checkboxName.childNodes.length;
+					var count = 0;
+					// 对于全选的CheckBox的点击事件，要做的事情很简单，让所有的CheckBox全部勾选上
+					if(attri === "all"){
+						for (var i = 2; i < len; i+=2) {
+                            checkboxName.childNodes[i].checked = true;
+                        }
+					}
+					// 对于单个的CheckBox
+					else if(attri === "single"){
+						for(var i = 2;i < len; i+=2){
+							if(checkboxName.childNodes[i].checked === true){
+								count++;
+							}
+						}
+						// console.log(count);
+						// 在点击之前它是不是唯一一个被勾选的？如果是的话，阻止这次点击默认事件，或者立马又将其checked状态置为真
+						// 点击之后，是不是满足了全选状态，并对应修改全选CheckBox的状态
+						if(target.checked === true && count === 3){
+							checkboxName.childNodes[1].checked = true;
+						}else{
+							checkboxName.childNodes[1].checked = false;
+							if(target.checked === false && count === 0){
+								target.checked = true;
+							}
+						}
+					}
+				}
+				//获取check的region选项
+				for(var i = 2;i<len;i+=2){
+					if(region.childNodes[i].checked === true){
+						areas.push(region.childNodes[i].value);
+					}
+				}
+				//获取check的product选项
+				for(var i = 2;i<len;i+=2){
+					if(product.childNodes[i].checked === true){
+						products.push(product.childNodes[i].value);
+					}
+				}
+				var data = getData(areas,products);
+				var areasLen = areas.length;
+				var productsLen = products.length;
+				renderTable(data,areasLen,productsLen);
+				
+			}
+			
+		}
+
+		// 获取数据,根据表单选择进行数据多维度的筛选
+		function getData(regions,products) {
+		    var data = sourceData.filter(function(item){
+		    	var index1 = regions.indexOf(item.region);
+		    	var index2 = products.indexOf(item.product);
+		    	if(index1 > -1 && index2 > -1)
+		    		return true;
+		    })
+		    // console.log(data)
+		    return data;
+		}
+
+		// 渲染新的表格
+		function renderTable(data,areasLen,productsLen) {
+			var html = "";
+			html = `<table border = "1px">`;
+			html +=`<tr>`;
+			if(areasLen === 1 && productsLen >=1){
+				html += `<th>地区</th><th>商品</th>`;
+			}else{
+				html +=`<th>商品</th><th>地区</th>`;
+				}
+			html +=`<th>一月</th><th>二月</th><th>三月</th><th>四月</th><th>五月</th><th>六月</th><th>七月</th><th>八月</th><th>九月</th><th>十月</th><th>十一月</th><th>十二月</th></tr>`;
+			for(var i = 0;i<data.length;i++){
+				html += `<tr>`;
+				if(areasLen === 1 && productsLen >=1){
+					html += `<td>${data[i].region}</td>`;
+					html += `<td>${data[i].product}</td>`;
+				}else{
+					html += `<td>${data[i].product}</td>`;
+					html += `<td>${data[i].region}</td>`;
+				}
+				for(var j = 0;j<data[i].sale.length;j++){
+					html += `<td>${data[i].sale[j]}</td>`
+				}
+				
+				html += `</tr>`;
+			}
+		    html += `</table>`;
+		    wrapper.innerHTML = html;
+		    mergeCell(0,data.length,0);
+		}
+
+		// 合并单元格
+		function mergeCell(startRow, endRow, col) {
+			console.log("aa")
+            var tb = document.getElementsByTagName("table")[0];
+            for(var i = startRow; i < endRow; i++) {
+            	console.log("4")
+                if(tb.rows[startRow].cells[col].innerHTML == tb.rows[i + 1].cells[col].innerHTML) { //如果相等就合并单元格,合并之后跳过下一行
+                    tb.rows[i + 1].removeChild(tb.rows[i + 1].cells[col]);
+                    tb.rows[startRow].cells[col].rowSpan = (tb.rows[startRow].cells[col].rowSpan) + 1;
+                } else {
+                    mergeCell(i + 1, endRow, col);
+                    break;
+                }
+            }
+        }
+
+		//生成地区的CheckBox
+		getCheckbox(region,[{
+		    value: "华北",
+		    text: "华北"
+		}, {
+		    value:"华东",
+		    text: "华东"
+		},{
+		    value: "华南",
+		    text: "华南"
+		}]);
+		// 生成产品的CheckBox
+		getCheckbox(product,[{
+		    value:"手机",
+		    text: "手机"
+		}, {
+		    value: "笔记本",
+		    text: "笔记本"
+		},{
+		    value: "智能音箱",
+		    text: "智能音箱"
+		}]);
+	</script>
+</body>
+</html>
