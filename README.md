@@ -28,4 +28,4 @@
 [实时时间差计算](https://zzongxueyan.github.io/study/day25-27/code3.html)
 ## Day28-30 第二十八天到第三十天 给爱的人发个邮件吧
 -实现结果
-[给爱的人发个邮件吧](https://zzongxueyan.github.io/study/day28-30/code1.html
+[给爱的人发个邮件吧](https://zzongxueyan.github.io/study/day28-30/code1.html)
