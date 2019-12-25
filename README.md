@@ -33,3 +33,7 @@
 -实现结果
 [任务一](https://zzongxueyan.github.io/study/day31-33/code1.html)
 [任务二](https://zzongxueyan.github.io/study/day31-33/code2.html)
+## Day42-43 开一家餐厅吧(一)
+- 实现结果
+[开一家餐厅吧(一)](https://zzongxueyan.github.io/study/day42-43/code1.html)
+
