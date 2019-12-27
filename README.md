@@ -36,4 +36,7 @@
 ## Day42-43 开一家餐厅吧(一)
 - 实现结果
 [开一家餐厅吧(一)](https://zzongxueyan.github.io/study/day42-43/code1.html)
+## Day44-46 开一家餐厅吧（二)
+- 实现结果
+[开一家餐厅吧（二）](https://zzongxueyan.github.io/study/day44-46/code1.html)
 
